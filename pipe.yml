@@ -1,0 +1,10 @@
+name: CPILint pipe
+image: bitbucketpipelines/demo-pipe-bash:0.1.0@sha256:0c85a2c6e102ac6b31b6588513077c12c634fef724c1ce01bbc0ac43e9e63d30
+description: This pipe is an example to show how easy is to create pipes for Bitbucket Pipelines.
+repository: 
+maintainer: anton.delitsch@implema.se
+tags:
+    - bitbucket-pipelines
+    - pipes
+    - bash
+  
