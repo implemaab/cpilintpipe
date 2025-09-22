@@ -56,35 +56,3 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
-
-    - name: Save Docker image as artifact
-      if: github.event_name != 'pull_request'
-      run: |
-        # Create artifacts directory
-        mkdir -p artifacts
-        
-        # Save the Docker image as a tar file
-        docker save ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest -o artifacts/cpilint-docker-image.tar
-        
-        # Create a compressed version
-        gzip artifacts/cpilint-docker-image.tar
-        
-        # Create a manifest file with image details
-        cat > artifacts/image-manifest.json << EOF
-        {
-          "image_name": "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}",
-          "tags": ${{ steps.meta.outputs.tags }},
-          "build_date": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-          "git_commit": "${{ github.sha }}",
-          "git_ref": "${{ github.ref }}",
-          "platforms": ["linux/amd64", "linux/arm64"]
-        }
-        EOF
-
-    - name: Upload Docker image artifact
-      if: github.event_name != 'pull_request'
-      uses: actions/upload-artifact@v4
-      with:
-        name: cpilint-docker-image
-        path: artifacts/
-        retention-days: 30

@@ -9,10 +9,11 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
 
 ```yaml
 script:
-  - pipe: atlassian/demo-pipe-bash:0.1.0
+  - pipe: ghcr.io/implemaab/cpilintpipe:latest
     variables:
-      NAME: "<string>"
-      # DEBUG: "<boolean>" # Optional
+      RULES : "test.xml"
+      TYPE: "DIRECTORY"
+      DIRECTORY: "Packages"
 ```
 ## Variables
 
