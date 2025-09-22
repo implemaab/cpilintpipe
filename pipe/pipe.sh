@@ -14,8 +14,12 @@ RULES=${RULES:?'RULES variable missing.'}
 # Default parameters
 DEBUG=${DEBUG:="false"}
 TYPE=${TYPE:='DIRECTORY'}
-CODE_INSIGHTS_RESULTS=${CODE_INSIGHTS_RESULTS:='false'}
 FILENAME=${FILENAME:='report.xml'}
+DIRECTORY=${DIRECTORY:='.'}
+HOST=${HOST:=''}
+USERNAME=${USERNAME:=''}
+PASSWORD=${PASSWORD:=''}
+PACKAGES=${PACKAGES:=''}
 
 if [ "$TYPE" == "DIRECTORY" ]; then
     cd $DIRECTORY

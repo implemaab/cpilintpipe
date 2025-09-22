@@ -1,6 +1,7 @@
-# Bitbucket Pipelines Pipe: My demo pipe
+# Bitbucket Pipelines Pipe: CPILint
 
-This pipe is an example to show how easy is to create pipes for Bitbucket Pipelines.
+This pipe is using CPILint to lint SAP CPI development.
+The CPILint version is based on the standard version but includes junit support.
 
 ## YAML Definition
 
@@ -17,40 +18,11 @@ script:
 
 | Variable              | Usage                                                       |
 | --------------------- | ----------------------------------------------------------- |
-| NAME (*)              | The name that will be printed in the logs |
-| DEBUG                 | Turn on extra debug information. Default: `false`. |
-
-_(*) = required variable._
-
-## Prerequisites
-
-## Examples
-
-Basic example:
-
-```yaml
-script:
-  - pipe: atlassian/demo-pipe-bash:0.1.0
-    variables:
-      NAME: "foobar"
-```
-
-Advanced example:
-
-```yaml
-script:
-  - pipe: atlassian/demo-pipe-bash:0.1.0
-    variables:
-      NAME: "foobar"
-      DEBUG: "true"
-```
-
-## Support
-If you’d like help with this pipe, or you have an issue or feature request, let us know.
-The pipe is maintained by bitbucketci-team@atlassian.com.
-
-If you’re reporting an issue, please include:
-
-- the version of the pipe
-- relevant logs and error messages
-- steps to reproduce
+| RULES (*)             | CPILint Rule filename |
+| TYPE                  | DIRECTORY or HOST depending on if the iflows are local |
+| FILENAME              | Filename of junit report |
+| DIRECTORY             | Folder containing IFlows (Only if Type is DIRECTORY) |
+| HOST                  | CPI Hostname (Only if Type is HOST) |
+| USERNAME              | CPI Username (Only if Type is HOST) |
+| PASSWORD              | CPI Password (Only if Type is HOST) |
+| PACKAGES              | CPI Packages to check (Only if Type is HOST) |

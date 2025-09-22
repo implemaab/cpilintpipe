@@ -20,7 +20,7 @@ RUN mv tmp/cpilint* cpilint
 RUN chmod +x cpilint/bin/cpilint
 
 COPY pipe /
-COPY LICENSE.txt pipe.yml README.md /
+COPY LICENSE pipe.yml README.md /
 RUN wget --progress=dot:giga -P / https://bitbucket.org/bitbucketpipelines/bitbucket-pipes-toolkit-bash/raw/0.6.0/common.sh
 
 RUN chmod a+x /*.sh
