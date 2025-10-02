@@ -41,11 +41,9 @@ if [ "$TYPE" == "DIRECTORY" ]; then
     cd ..
     info "Running cpilint on directory: $DIRECTORY"
     info "Output file: $FILENAME"
-    ls -la $(dirname "$0")
-    ls -la $(dirname "$0")/../cpilint/bin
-    run $(dirname "$0")/../cpilint/bin/cpilint -rules "$RULES" -directory "$DIRECTORY" -debug -boring -format junit -output "$FILENAME"
+    run $(dirname "$0")/../cpilint/bin/cpilint -rules "$RULES" -directory "$DIRECTORY" -debug -format junit -output "$FILENAME"
 else
-    run $(dirname "$0")/../cpilint/bin/cpilint -rules "$RULES" -host "$HOST" -username "$USERNAME" -password "$PASSWORD" -packages "$PACKAGES" -debug -boring -format junit -output "$FILENAME"
+    run $(dirname "$0")/../cpilint/bin/cpilint -rules "$RULES" -host "$HOST" -username "$USERNAME" -password "$PASSWORD" -packages "$PACKAGES" -debug -format junit -output "$FILENAME"
 fi
 
 if [[ "${status}" == "0" ]]; then

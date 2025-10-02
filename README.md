@@ -9,7 +9,7 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
 
 ```yaml
 script:
-  - pipe: ghcr.io/implemaab/cpilintpipe:latest
+  - pipe: docker://ghcr.io/implemaab/cpilintpipe:latest
     variables:
       RULES : "test.xml"
       TYPE: "DIRECTORY"
