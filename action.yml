@@ -1,0 +1,57 @@
+name: CPILint
+description: Lint SAP Cloud Integration (CPI) iFlows with CPILint and write a JUnit report.
+author: Implema AB
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  rules:
+    description: CPILint rules file.
+    required: true
+  type:
+    description: DIRECTORY (lint iFlows in the repository) or HOST (lint packages on a CPI tenant).
+    required: false
+    default: DIRECTORY
+  filename:
+    description: File name of the JUnit report.
+    required: false
+    default: cpilint.xml
+  directory:
+    description: Folder containing the iFlows (type DIRECTORY).
+    required: false
+    default: "."
+  host:
+    description: CPI host name (type HOST).
+    required: false
+    default: ""
+  username:
+    description: CPI user (type HOST).
+    required: false
+    default: ""
+  password:
+    description: CPI password (type HOST). Pass it from a secret.
+    required: false
+    default: ""
+  packages:
+    description: CPI packages to check (type HOST).
+    required: false
+    default: ""
+  debug:
+    description: Enable extra debug output.
+    required: false
+    default: "false"
+
+runs:
+  using: docker
+  image: docker://ghcr.io/implemaab/cpilintpipe:latest
+  env:
+    RULES: ${{ inputs.rules }}
+    TYPE: ${{ inputs.type }}
+    FILENAME: ${{ inputs.filename }}
+    DIRECTORY: ${{ inputs.directory }}
+    HOST: ${{ inputs.host }}
+    USERNAME: ${{ inputs.username }}
+    PASSWORD: ${{ inputs.password }}
+    PACKAGES: ${{ inputs.packages }}
+    DEBUG: ${{ inputs.debug }}

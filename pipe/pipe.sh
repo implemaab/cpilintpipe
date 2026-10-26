@@ -22,7 +22,7 @@ PASSWORD=${PASSWORD:=''}
 PACKAGES=${PACKAGES:=''}
 
 if [ "$TYPE" == "DIRECTORY" ]; then
-    cd $DIRECTORY
+    pushd "$DIRECTORY" > /dev/null
     for i in *
       do
         if [ -d "$i" ]
@@ -38,7 +38,7 @@ if [ "$TYPE" == "DIRECTORY" ]; then
                 cd ..
         fi
       done
-    cd ..
+    popd > /dev/null
     info "Running cpilint on directory: $DIRECTORY"
     info "Output file: $FILENAME"
     run $(dirname "$0")/../cpilint/bin/cpilint -rules "$RULES" -directory "$DIRECTORY" -debug -format junit -output "$FILENAME"
